@@ -1,40 +1,113 @@
 :root {
-  /* base */
-  --bg: #060510;
-  --bg-1: #0b0918;
-  --bg-2: #100d22;
-  --panel: #16132e5c;
-  --panel-solid: #15122c;
-  --border: #ffffff14;
-  --border-strong: #ffffff29;
+  color-scheme: dark;
 
-  --text: #f3f1ff;
-  --muted: #a8a5cc;
-  --faint: #726f9c;
+  /* ---- dark (default) ---- */
+  --bg: #05040d;
+  --bg-1: #0a0817;
+  --bg-2: #100c24;
+  --panel: #1a163666;
+  --panel-solid: #161230;
+  --card: #14112c;
+  --card-2: #191340;
+  --hero-panel: radial-gradient(120% 140% at 0% 0%, #2a1c66 0%, #140f30 44%, #0a0820 100%),
+    radial-gradient(90% 120% at 100% 100%, #ff3d9a1f, transparent 60%);
+  --field-bg: #ffffff0a;
+  --chip-bg: #0d0b1fee;
+  --nav-bg: #05040dd9;
+  --shadow: rgba(0, 0, 0, 0.55);
 
-  /* accents */
-  --violet: #8b5cff;
-  --indigo: #5b7cff;
-  --cyan: #22d9ee;
-  --pink: #ff5cc4;
-  --accent: #8b5cff;
-  --accent-2: #b9a6ff;
-  --accent-glow: #8b5cff4d;
-  --cyan-glow: #22d9ee40;
+  --text: #f5f3ff;
+  --muted: #a9a6d0;
+  --faint: #7d79a8;
 
-  --grad-brand: linear-gradient(110deg, #8b5cff 0%, #5b7cff 42%, #22d9ee 100%);
-  --grad-warm: linear-gradient(110deg, #a25cff 0%, #ff5cc4 100%);
-  --grad-heading: linear-gradient(120deg, #ffffff 10%, #c3b4ff 52%, #7fe6f2 100%);
-  --grad-surface: linear-gradient(180deg, #1a1640 0%, #0c0a1e 100%);
+  --violet: #7b4dff;
+  --indigo: #4f7bff;
+  --cyan: #14e0e0;
+  --pink: #ff3d9a;
+  --amber: #ffb43d;
+  --accent: #7b4dff;
+  --accent-2: #c1aaff;
+  --accent-glow: #7b4dff66;
+  --cyan-glow: #14e0e055;
+  --pink-glow: #ff3d9a4d;
+
+  --grad-brand: linear-gradient(110deg, #7b4dff 0%, #4f7bff 40%, #14e0e0 100%);
+  --grad-warm: linear-gradient(110deg, #7b4dff 0%, #ff3d9a 55%, #ffb43d 100%);
+  --grad-heading: linear-gradient(115deg, #ffffff 8%, #c8b6ff 44%, #7ff0ea 78%, #ffffff 100%);
+  --grad-surface: linear-gradient(180deg, #1c1746 0%, #0b0920 100%);
+  --grad-ring: conic-gradient(from 140deg, #7b4dff, #14e0e0, #ff3d9a, #ffb43d, #7b4dff);
+
+  --mesh:
+    radial-gradient(780px circle at 6% -10%, #7b4dff4d, transparent 58%),
+    radial-gradient(680px circle at 98% 4%, #14e0e033, transparent 55%),
+    radial-gradient(720px circle at 88% 92%, #ff3d9a2e, transparent 55%),
+    radial-gradient(640px circle at 4% 96%, #4f7bff2b, transparent 55%);
+  --dot: #ffffff0f;
+
+  /* theme-agnostic (auto-adapts via --text) */
+  --border: color-mix(in srgb, var(--text) 13%, transparent);
+  --border-strong: color-mix(in srgb, var(--text) 24%, transparent);
+  --ghost-bg: color-mix(in srgb, var(--text) 5%, transparent);
+  --track: color-mix(in srgb, var(--text) 10%, transparent);
+
+  /* code window — dark in both themes */
+  --code-bg: linear-gradient(180deg, #17132ff7, #0b0920f7);
+  --code-fg: #d6ddff;
+  --code-accent: #7ff0ea;
 
   --radius: 18px;
-  --maxw: 1140px;
+  --maxw: 1160px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   --font-display: "Roboto", "Segoe UI", system-ui, sans-serif;
   --font-body: "Roboto", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f7f6fc;
+  --bg-1: #efedf8;
+  --bg-2: #e7e3f4;
+  --panel: #ffffffcc;
+  --panel-solid: #ffffff;
+  --card: #ffffff;
+  --card-2: #f4f1fd;
+  --hero-panel: radial-gradient(120% 140% at 0% 0%, #efe7ff 0%, #f6f2ff 44%, #ffffff 100%),
+    radial-gradient(90% 120% at 100% 100%, #ff3d9a14, transparent 60%);
+  --field-bg: #ffffff;
+  --chip-bg: #ffffffe6;
+  --nav-bg: #f7f6fcdb;
+  --shadow: rgba(41, 27, 82, 0.16);
+
+  --text: #1b1638;
+  --muted: #5c577e;
+  --faint: #8b86ab;
+
+  --violet: #6a37ff;
+  --indigo: #3f63e6;
+  --cyan: #0898b0;
+  --pink: #e21c7e;
+  --amber: #cf7a10;
+  --accent: #6a37ff;
+  --accent-2: #6f52c8;
+  --accent-glow: #6a37ff33;
+  --cyan-glow: #0898b033;
+  --pink-glow: #e21c7e2e;
+
+  --grad-brand: linear-gradient(110deg, #6a37ff 0%, #3f63e6 40%, #0898b0 100%);
+  --grad-warm: linear-gradient(110deg, #6a37ff 0%, #e21c7e 55%, #cf7a10 100%);
+  --grad-heading: linear-gradient(115deg, #1b1638 6%, #6a37ff 46%, #0898b0 82%, #1b1638 100%);
+  --grad-surface: linear-gradient(180deg, #ffffff 0%, #f1edfb 100%);
+
+  --mesh:
+    radial-gradient(760px circle at 6% -12%, #7b4dff26, transparent 58%),
+    radial-gradient(660px circle at 98% 2%, #14e0e01f, transparent 55%),
+    radial-gradient(700px circle at 90% 94%, #ff3d9a1c, transparent 55%),
+    radial-gradient(620px circle at 2% 98%, #4f7bff1c, transparent 55%);
+  --dot: #1b163814;
 }
 
 * {
@@ -46,7 +119,6 @@
 html {
   scroll-behavior: smooth;
 }
-/* lenis owns scrolling when active */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -63,9 +135,10 @@ body {
   color: var(--text);
   font-family: var(--font-body);
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 h1,
@@ -73,9 +146,9 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  line-height: 1.06;
+  font-weight: 800;
+  letter-spacing: -0.035em;
 }
 
 a {
@@ -97,33 +170,32 @@ img {
 }
 
 ::selection {
-  background: var(--violet);
+  background: var(--pink);
   color: #fff;
 }
 
-/* ambient background glow */
+/* bold mesh-gradient backdrop */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(680px circle at 10% -8%, #8b5cff33, transparent 60%),
-    radial-gradient(720px circle at 100% 8%, #22d9ee1f, transparent 55%),
-    radial-gradient(760px circle at 62% 108%, #ff5cc41c, transparent 55%);
+  background: var(--mesh);
   pointer-events: none;
   z-index: 0;
 }
 
-/* film grain */
+/* dot grid */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 78%);
+  opacity: 0.5;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -139,8 +139,12 @@ export default function Hero({ start }) {
             <a href="#projects" className="btn btn--primary">
               View My Work <span aria-hidden>↗</span>
             </a>
-            <a href="#contact" className="btn btn--ghost">
-              Let's Connect <span aria-hidden>↗</span>
+            <a
+              href="/resume.pdf"
+              download="Rohit-Kumar-Resume.pdf"
+              className="btn btn--ghost"
+            >
+              Download Resume <span aria-hidden>↓</span>
             </a>
           </div>
           <div className="hero__tech">

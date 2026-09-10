@@ -1,33 +1,35 @@
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { SOCIALS } from "../data";
 import { magnetic, revealHeading, revealUp } from "../lib/anim";
 
-const LOOKING_FOR = [
-  "Full-Stack Developer",
-  "JavaScript Developer",
-  "React.js Developer",
-  "Node.js Developer",
-];
+const MAIL = "rohitkumarrawani6@gmail.com";
+const PHONE_HREF = "tel:+917992460569";
+const PHONE_TEXT = "+91 79924 60569";
 
 export default function Contact() {
   const root = useRef(null);
+  const [sent, setSent] = useState(false);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       revealHeading(root.current.querySelector(".contact__left h2"), root.current);
       revealUp(
-        [".contact__left .tag", ".contact__left p", ".contact__actions", ".contact__card"],
+        [
+          ".contact__left .tag",
+          ".contact__left p",
+          ".contact__details",
+          ".contact__actions",
+          ".contact__form",
+        ],
         root.current,
-        { start: "top 78%", stagger: 0.12 }
+        { start: "top 78%", stagger: 0.1 }
       );
     }, root);
 
-    const cleanups = root.current
-      ? Array.from(root.current.querySelectorAll(".contact__actions .btn")).map((b) =>
-          magnetic(b, 0.25)
-        )
-      : [];
+    const cleanups = Array.from(root.current.querySelectorAll(".btn")).map((b) =>
+      magnetic(b, 0.2)
+    );
 
     return () => {
       ctx.revert();
@@ -35,47 +37,90 @@ export default function Contact() {
     };
   }, []);
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const name = (data.get("name") || "").toString().trim();
+    const email = (data.get("email") || "").toString().trim();
+    const message = (data.get("message") || "").toString().trim();
+    const subject = encodeURIComponent(`Portfolio message from ${name}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
+    window.location.href = `mailto:${MAIL}?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
+
   return (
     <section id="contact" className="section contact" ref={root}>
       <div className="wrap contact__inner">
         <div className="contact__left">
           <span className="tag">LET'S CONNECT</span>
-          <h2>Open to new opportunities</h2>
+          <h2>Have a project or role in mind?</h2>
           <p>
-            I'm looking for roles where I can contribute to real-world projects,
-            learn from experienced developers, and grow into an expert Full-Stack
-            Developer. If that sounds like a fit, let's talk.
+            I'm open to Full-Stack / JavaScript / React / Node roles and freelance
+            work. Send a message and I'll get back to you.
           </p>
+
+          <ul className="contact__details">
+            <li>
+              <span className="contact__details-label">Email</span>
+              <a href={`mailto:${MAIL}`}>{MAIL}</a>
+            </li>
+            <li>
+              <span className="contact__details-label">Phone</span>
+              <a href={PHONE_HREF}>{PHONE_TEXT}</a>
+            </li>
+          </ul>
+
           <div className="contact__actions">
-            {SOCIALS.map((s) => (
+            {SOCIALS.filter((s) => s.href.startsWith("http")).map((s) => (
               <a
                 key={s.label}
                 href={s.href}
-                target={s.href.startsWith("http") ? "_blank" : undefined}
+                target="_blank"
                 rel="noreferrer"
                 className="btn btn--ghost"
               >
                 {s.label} <span aria-hidden>↗</span>
               </a>
             ))}
+            <a
+              href="/resume.pdf"
+              download="Rohit-Kumar-Resume.pdf"
+              className="btn btn--ghost"
+            >
+              Resume <span aria-hidden>↓</span>
+            </a>
           </div>
         </div>
 
-        <div className="contact__card">
-          <h3>What I'm aiming for</h3>
-          <p>
-            Becoming an expert Full-Stack Developer with strong fundamentals in
-            JavaScript, backend development, databases, system design, APIs,
-            testing, and deployment — capable of shipping production-ready,
-            scalable applications.
-          </p>
-          <span className="contact__card-label">Looking for</span>
-          <ul className="contact__roles">
-            {LOOKING_FOR.map((r) => (
-              <li key={r}>{r}</li>
-            ))}
-          </ul>
-        </div>
+        <form className="contact__form" onSubmit={onSubmit}>
+          <label className="field">
+            <span>Name</span>
+            <input name="name" type="text" required placeholder="Your name" />
+          </label>
+          <label className="field">
+            <span>Email</span>
+            <input name="email" type="email" required placeholder="you@example.com" />
+          </label>
+          <label className="field">
+            <span>Message</span>
+            <textarea
+              name="message"
+              rows="4"
+              required
+              placeholder="Tell me a bit about it…"
+            />
+          </label>
+          <button type="submit" className="btn btn--primary contact__send">
+            Send Message <span aria-hidden>↗</span>
+          </button>
+          {sent && (
+            <p className="contact__ok">
+              Opening your email app — if nothing happened, write to{" "}
+              <a href={`mailto:${MAIL}`}>{MAIL}</a>.
+            </p>
+          )}
+        </form>
       </div>
     </section>
   );
