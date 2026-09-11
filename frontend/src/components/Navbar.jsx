@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { NAV } from "../data";
 import { magnetic, reduced } from "../lib/anim";
+import { pathForId } from "../lib/router";
 import ThemeToggle from "./ThemeToggle";
 
 const IDS = NAV.map((n) => n.toLowerCase());
@@ -34,23 +35,25 @@ export default function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    // scroll-spy: which section is in view -> active link + URL hash
-    const sections = IDS.map((id) => document.getElementById(id)).filter(Boolean);
+    const sections = IDS.map((id) => document.getElementById(id)).filter(
+      Boolean,
+    );
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
             setActive(e.target.id);
-            history.replaceState(null, "", `#${e.target.id}`);
+            const path = pathForId(e.target.id);
+            if (location.pathname !== path) history.replaceState(null, "", path);
           }
         });
       },
-      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
     );
     sections.forEach((s) => io.observe(s));
 
     const cleanups = Array.from(
-      ref.current.querySelectorAll(".btn, .nav__brand")
+      ref.current.querySelectorAll(".btn, .nav__brand"),
     ).map((b) => magnetic(b, 0.2));
 
     return () => {

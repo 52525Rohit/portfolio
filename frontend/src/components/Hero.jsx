@@ -1,8 +1,9 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { TECH } from "../data";
 import { magnetic, reduced, splitWords } from "../lib/anim";
 import profile from "../assets/profile.png";
+import ResumeModal from "./ResumeModal";
 
 const CODE = `const developer = {
   name: "Rohit Kumar",
@@ -15,8 +16,8 @@ const CODE = `const developer = {
 export default function Hero({ start }) {
   const root = useRef(null);
   const wordsRef = useRef([]);
+  const [resumeOpen, setResumeOpen] = useState(false);
 
-  // set the hidden start state + scroll behaviours once
   useLayoutEffect(() => {
     const ctx = gsap.context((self) => {
       const words = [];
@@ -37,7 +38,6 @@ export default function Hero({ start }) {
       gsap.set(".hero__card", { y: 40, opacity: 0 });
       gsap.set([".hero__orb", ".hero__orb--2"], { opacity: 0, scale: 0.7 });
 
-      // parallax on scroll
       gsap.to(".hero__orb", {
         yPercent: 24,
         scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
@@ -51,7 +51,6 @@ export default function Hero({ start }) {
         scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
       });
 
-      // ambient floats
       gsap.to(".hero__card", { y: "-=14", duration: 3, delay: 3, ease: "sine.inOut", repeat: -1, yoyo: true });
       gsap.to(".hero__orb", { scale: 1.12, duration: 5, delay: 2, ease: "sine.inOut", repeat: -1, yoyo: true });
       gsap.to(".hero__orb--2", { scale: 1.2, x: 24, duration: 6, delay: 2, ease: "sine.inOut", repeat: -1, yoyo: true });
@@ -67,7 +66,6 @@ export default function Hero({ start }) {
     };
   }, []);
 
-  // play the intro once the loader hands off
   useEffect(() => {
     if (!start || reduced) return;
     const ctx = gsap.context(() => {
@@ -139,13 +137,13 @@ export default function Hero({ start }) {
             <a href="#projects" className="btn btn--primary">
               View My Work <span aria-hidden>↗</span>
             </a>
-            <a
-              href="/resume.pdf"
-              download="Rohit-Kumar-Resume.pdf"
+            <button
+              type="button"
               className="btn btn--ghost"
+              onClick={() => setResumeOpen(true)}
             >
               Download Resume <span aria-hidden>↓</span>
-            </a>
+            </button>
           </div>
           <div className="hero__tech">
             <span>STACK I WORK WITH</span>
@@ -181,6 +179,7 @@ export default function Hero({ start }) {
       <a href="#about" className="hero__scroll" aria-label="Scroll to about">
         <span />
       </a>
+      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
     </section>
   );
 }

@@ -9,7 +9,8 @@
   --panel-solid: #161230;
   --card: #14112c;
   --card-2: #191340;
-  --hero-panel: radial-gradient(120% 140% at 0% 0%, #2a1c66 0%, #140f30 44%, #0a0820 100%),
+  --hero-panel:
+    radial-gradient(120% 140% at 0% 0%, #2a1c66 0%, #140f30 44%, #0a0820 100%),
     radial-gradient(90% 120% at 100% 100%, #ff3d9a1f, transparent 60%);
   --field-bg: #ffffff0a;
   --chip-bg: #0d0b1fee;
@@ -33,9 +34,22 @@
 
   --grad-brand: linear-gradient(110deg, #7b4dff 0%, #4f7bff 40%, #14e0e0 100%);
   --grad-warm: linear-gradient(110deg, #7b4dff 0%, #ff3d9a 55%, #ffb43d 100%);
-  --grad-heading: linear-gradient(115deg, #ffffff 8%, #c8b6ff 44%, #7ff0ea 78%, #ffffff 100%);
+  --grad-heading: linear-gradient(
+    115deg,
+    #ffffff 8%,
+    #c8b6ff 44%,
+    #7ff0ea 78%,
+    #ffffff 100%
+  );
   --grad-surface: linear-gradient(180deg, #1c1746 0%, #0b0920 100%);
-  --grad-ring: conic-gradient(from 140deg, #7b4dff, #14e0e0, #ff3d9a, #ffb43d, #7b4dff);
+  --grad-ring: conic-gradient(
+    from 140deg,
+    #7b4dff,
+    #14e0e0,
+    #ff3d9a,
+    #ffb43d,
+    #7b4dff
+  );
 
   --mesh:
     radial-gradient(780px circle at 6% -10%, #7b4dff4d, transparent 58%),
@@ -44,13 +58,11 @@
     radial-gradient(640px circle at 4% 96%, #4f7bff2b, transparent 55%);
   --dot: #ffffff0f;
 
-  /* theme-agnostic (auto-adapts via --text) */
   --border: color-mix(in srgb, var(--text) 13%, transparent);
   --border-strong: color-mix(in srgb, var(--text) 24%, transparent);
   --ghost-bg: color-mix(in srgb, var(--text) 5%, transparent);
   --track: color-mix(in srgb, var(--text) 10%, transparent);
 
-  /* code window — dark in both themes */
   --code-bg: linear-gradient(180deg, #17132ff7, #0b0920f7);
   --code-fg: #d6ddff;
   --code-accent: #7ff0ea;
@@ -75,7 +87,8 @@
   --panel-solid: #ffffff;
   --card: #ffffff;
   --card-2: #f4f1fd;
-  --hero-panel: radial-gradient(120% 140% at 0% 0%, #efe7ff 0%, #f6f2ff 44%, #ffffff 100%),
+  --hero-panel:
+    radial-gradient(120% 140% at 0% 0%, #efe7ff 0%, #f6f2ff 44%, #ffffff 100%),
     radial-gradient(90% 120% at 100% 100%, #ff3d9a14, transparent 60%);
   --field-bg: #ffffff;
   --chip-bg: #ffffffe6;
@@ -99,7 +112,13 @@
 
   --grad-brand: linear-gradient(110deg, #6a37ff 0%, #3f63e6 40%, #0898b0 100%);
   --grad-warm: linear-gradient(110deg, #6a37ff 0%, #e21c7e 55%, #cf7a10 100%);
-  --grad-heading: linear-gradient(115deg, #1b1638 6%, #6a37ff 46%, #0898b0 82%, #1b1638 100%);
+  --grad-heading: linear-gradient(
+    115deg,
+    #1b1638 6%,
+    #6a37ff 46%,
+    #0898b0 82%,
+    #1b1638 100%
+  );
   --grad-surface: linear-gradient(180deg, #ffffff 0%, #f1edfb 100%);
 
   --mesh:
@@ -138,7 +157,9 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+  transition:
+    background 0.3s var(--ease),
+    color 0.3s var(--ease);
 }
 
 h1,
@@ -193,7 +214,11 @@ body::after {
   pointer-events: none;
   background-image: radial-gradient(var(--dot) 1px, transparent 1px);
   background-size: 44px 44px;
-  -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(
+    circle at 50% 40%,
+    #000 0%,
+    transparent 78%
+  );
   mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 78%);
   opacity: 0.5;
 }

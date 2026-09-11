@@ -12,6 +12,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { reduced } from "./lib/anim";
+import { pathForId, idForPath } from "./lib/router";
 import "./App.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -30,22 +31,36 @@ export default function App() {
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    // route in-page anchor clicks through Lenis
     const onClick = (e) => {
       const a = e.target.closest('a[href^="#"]');
       if (!a) return;
-      const id = a.getAttribute("href");
-      if (id.length < 2) return;
-      const el = document.querySelector(id);
+      const hash = a.getAttribute("href");
+      if (hash.length < 2) return;
+      const el = document.querySelector(hash);
       if (!el) return;
       e.preventDefault();
       lenis.scrollTo(el, { offset: -72, duration: 1.1 });
+      history.pushState(null, "", pathForId(hash.slice(1)));
     };
     document.addEventListener("click", onClick);
+
+    // Deep link: /about etc. should land on that section, not just "/".
+    const deepLinkId = idForPath(location.pathname);
+    if (deepLinkId !== "home") {
+      const el = document.getElementById(deepLinkId);
+      if (el) requestAnimationFrame(() => lenis.scrollTo(el, { offset: -72, immediate: true }));
+    }
+
+    const onPopState = () => {
+      const el = document.getElementById(idForPath(location.pathname));
+      if (el) lenis.scrollTo(el, { offset: -72, duration: 1.1 });
+    };
+    window.addEventListener("popstate", onPopState);
 
     const id = setTimeout(() => ScrollTrigger.refresh(), 400);
     return () => {
       document.removeEventListener("click", onClick);
+      window.removeEventListener("popstate", onPopState);
       gsap.ticker.remove(raf);
       lenis.destroy();
       clearTimeout(id);

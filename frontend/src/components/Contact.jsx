@@ -2,6 +2,9 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { SOCIALS } from "../data";
 import { magnetic, revealHeading, revealUp } from "../lib/anim";
+import { useContactForm } from "../hooks/useContactForm";
+import Toast from "./Toast";
+import ResumeModal from "./ResumeModal";
 
 const MAIL = "rohitkumarrawani6@gmail.com";
 const PHONE_HREF = "tel:+917992460569";
@@ -9,11 +12,15 @@ const PHONE_TEXT = "+91 79924 60569";
 
 export default function Contact() {
   const root = useRef(null);
-  const [sent, setSent] = useState(false);
+  const { toast, closeToast, onSubmit } = useContactForm();
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      revealHeading(root.current.querySelector(".contact__left h2"), root.current);
+      revealHeading(
+        root.current.querySelector(".contact__left h2"),
+        root.current,
+      );
       revealUp(
         [
           ".contact__left .tag",
@@ -23,12 +30,12 @@ export default function Contact() {
           ".contact__form",
         ],
         root.current,
-        { start: "top 78%", stagger: 0.1 }
+        { start: "top 78%", stagger: 0.1 },
       );
     }, root);
 
-    const cleanups = Array.from(root.current.querySelectorAll(".btn")).map((b) =>
-      magnetic(b, 0.2)
+    const cleanups = Array.from(root.current.querySelectorAll(".btn")).map(
+      (b) => magnetic(b, 0.2),
     );
 
     return () => {
@@ -37,18 +44,6 @@ export default function Contact() {
     };
   }, []);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = (data.get("name") || "").toString().trim();
-    const email = (data.get("email") || "").toString().trim();
-    const message = (data.get("message") || "").toString().trim();
-    const subject = encodeURIComponent(`Portfolio message from ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
-    window.location.href = `mailto:${MAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
-  };
-
   return (
     <section id="contact" className="section contact" ref={root}>
       <div className="wrap contact__inner">
@@ -56,8 +51,8 @@ export default function Contact() {
           <span className="tag">LET'S CONNECT</span>
           <h2>Have a project or role in mind?</h2>
           <p>
-            I'm open to Full-Stack / JavaScript / React / Node roles and freelance
-            work. Send a message and I'll get back to you.
+            I'm open to Full-Stack / JavaScript / React / Node roles and
+            freelance work. Send a message and I'll get back to you.
           </p>
 
           <ul className="contact__details">
@@ -83,13 +78,13 @@ export default function Contact() {
                 {s.label} <span aria-hidden>↗</span>
               </a>
             ))}
-            <a
-              href="/resume.pdf"
-              download="Rohit-Kumar-Resume.pdf"
+            <button
+              type="button"
               className="btn btn--ghost"
+              onClick={() => setResumeOpen(true)}
             >
               Resume <span aria-hidden>↓</span>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -100,7 +95,12 @@ export default function Contact() {
           </label>
           <label className="field">
             <span>Email</span>
-            <input name="email" type="email" required placeholder="you@example.com" />
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="you@example.com"
+            />
           </label>
           <label className="field">
             <span>Message</span>
@@ -114,14 +114,10 @@ export default function Contact() {
           <button type="submit" className="btn btn--primary contact__send">
             Send Message <span aria-hidden>↗</span>
           </button>
-          {sent && (
-            <p className="contact__ok">
-              Opening your email app — if nothing happened, write to{" "}
-              <a href={`mailto:${MAIL}`}>{MAIL}</a>.
-            </p>
-          )}
         </form>
       </div>
+      <Toast toast={toast} onClose={closeToast} />
+      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
     </section>
   );
 }
