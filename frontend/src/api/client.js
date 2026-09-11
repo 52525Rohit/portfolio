@@ -9,8 +9,8 @@ function authHeader() {
 
 async function request(path, options = {}) {
   const res = await fetch(`${API_URL}${path}`, {
-    headers: { "Content-Type": "application/json", ...authHeader(), ...options.headers },
     ...options,
+    headers: { ...options.headers, ...authHeader() },
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
@@ -19,8 +19,16 @@ async function request(path, options = {}) {
   return res.json();
 }
 
+const withJson = (body, options) => ({
+  ...options,
+  headers: { "Content-Type": "application/json", ...options?.headers },
+  body: JSON.stringify(body),
+});
+
 export const apiClient = {
   get: (path) => request(path),
-  post: (path, body) => request(path, { method: "POST", body: JSON.stringify(body) }),
-  put: (path, body) => request(path, { method: "PUT", body: JSON.stringify(body) }),
+  post: (path, body) => request(path, withJson(body, { method: "POST" })),
+  put: (path, body) => request(path, withJson(body, { method: "PUT" })),
+  // FormData sets its own multipart Content-Type (with boundary) — never override it.
+  postForm: (path, formData) => request(path, { method: "POST", body: formData }),
 };

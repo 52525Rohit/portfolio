@@ -16,6 +16,7 @@ await seed();
 const app = express();
 app.use(cors({ origin: CLIENT_ORIGIN || "*" }));
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
 app.use("/api/contact", contactRoutes);
 app.use("/api/admin", authRoutes);

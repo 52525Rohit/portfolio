@@ -52,7 +52,10 @@ export default function Skills() {
                 <span className="skill__pct">{s.level}%</span>
               </div>
               <div className="skill__track">
-                <div className="skill__fill" data-level={s.level} />
+                {/* width set declaratively so it's always correct, even for a skill
+                    added after mount (async content load / live polling) that GSAP's
+                    one-time entrance animation below never gets to touch */}
+                <div className="skill__fill" data-level={s.level} style={{ width: `${s.level}%` }} />
               </div>
             </div>
           ))}

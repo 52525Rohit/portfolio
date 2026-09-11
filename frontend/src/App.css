@@ -1241,22 +1241,190 @@ h2 {
   color: var(--muted);
   max-width: 700px;
 }
-.admin-dash__editor {
-  flex: 1;
-  min-height: 60vh;
-  width: 100%;
-  background: var(--field-bg);
+/* ============ admin section editors ============ */
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+.admin-grid--wide {
+  grid-template-columns: 1fr;
+}
+.admin-card {
+  background: var(--card-2);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius);
-  color: var(--text);
-  font-family: ui-monospace, "SF Mono", Consolas, monospace;
-  font-size: 13px;
-  line-height: 1.6;
-  padding: 20px;
-  resize: vertical;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
-.admin-dash__editor:focus {
+.admin-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.admin-card__head h2 {
+  font-size: 16px;
+  color: var(--text);
+  margin: 0;
+}
+.admin-card .btn {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+/* profile image / resume upload cards */
+.admin-upload {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.admin-upload__preview {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid var(--border-strong);
+  background: var(--field-bg);
+  flex: none;
+}
+.admin-upload__file {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  border: 1px solid var(--border-strong);
+  background: var(--field-bg);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: var(--muted);
+  flex: none;
+}
+.admin-upload__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.admin-upload__body input[type="file"] {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* generic array-of-objects list editor (skills, stats, socials) */
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.admin-list__row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.admin-list__row input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 11px;
+  border-radius: 9px;
+  border: 1px solid var(--border-strong);
+  background: var(--field-bg);
+  color: var(--text);
+  font-size: 13px;
+}
+.admin-list__row input:focus {
   outline: none;
-  border-color: var(--cyan);
-  box-shadow: 0 0 0 3px var(--cyan-glow);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.admin-list__remove {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: none;
+  color: var(--faint);
+  font-size: 16px;
+  cursor: pointer;
+}
+.admin-list__remove:hover {
+  color: var(--pink);
+  border-color: var(--pink);
+}
+.admin-list__add {
+  align-self: flex-start;
+}
+
+/* projects editor */
+.admin-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.admin-project {
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+}
+.admin-project__thumb {
+  flex: none;
+  width: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.admin-project__thumb img {
+  width: 96px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--field-bg);
+}
+.admin-project__thumb input[type="file"] {
+  font-size: 10px;
+  color: var(--muted);
+}
+.admin-project__fields {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.admin-project__fields input,
+.admin-project__fields textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: 9px;
+  border: 1px solid var(--border-strong);
+  background: var(--field-bg);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+}
+.admin-project__fields textarea {
+  resize: vertical;
+  min-height: 54px;
+}
+.admin-project__fields input:focus,
+.admin-project__fields textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.admin-project__row {
+  display: flex;
+  gap: 8px;
+}
+.admin-project__row input {
+  flex: 1;
+  min-width: 0;
 }

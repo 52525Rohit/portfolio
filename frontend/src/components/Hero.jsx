@@ -2,7 +2,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { magnetic, reduced, splitWords } from "../lib/anim";
 import { useContent } from "../hooks/useContent";
-import profile from "../assets/profile.png";
 import ResumeModal from "./ResumeModal";
 
 const CODE = `const developer = {
@@ -14,7 +13,7 @@ const CODE = `const developer = {
 };`;
 
 export default function Hero({ start }) {
-  const { tech } = useContent();
+  const { tech, profileImage, resume } = useContent();
   const root = useRef(null);
   const wordsRef = useRef([]);
   const [resumeOpen, setResumeOpen] = useState(false);
@@ -160,7 +159,7 @@ export default function Hero({ start }) {
           <div className="hero__orb" aria-hidden />
           <div className="hero__orb hero__orb--2" aria-hidden />
           <div className="hero__portrait">
-            <img src={profile} alt="Rohit Kumar" />
+            <img src={profileImage} alt="Rohit Kumar" />
             <span className="hero__badge">
               <i /> Open to opportunities
             </span>
@@ -180,7 +179,7 @@ export default function Hero({ start }) {
       <a href="#about" className="hero__scroll" aria-label="Scroll to about">
         <span />
       </a>
-      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
+      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} resumeUrl={resume} />
     </section>
   );
 }

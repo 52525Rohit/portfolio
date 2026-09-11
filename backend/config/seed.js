@@ -2,9 +2,9 @@ import bcrypt from "bcryptjs";
 import Admin from "../models/Admin.js";
 import Content from "../models/Content.js";
 
-// Initial values mirror the frontend's static data.js — after this the DB is
-// the source of truth and the admin dashboard edits it directly.
 const INITIAL_CONTENT = {
+  profileImage: "/profile.png",
+  resume: "/resume.pdf",
   nav: ["Home", "About", "Skills", "Projects", "Contact"],
   tech: ["HTML", "CSS", "JS", "React", "Next", "Node", "Mongo"],
   stats: [
@@ -73,9 +73,20 @@ export default async function seed() {
     }
   }
 
-  const hasContent = await Content.exists({ _id: "site" });
-  if (!hasContent) {
+  const existing = await Content.findById("site").lean();
+  if (!existing) {
     await Content.create({ _id: "site", ...INITIAL_CONTENT });
     console.log("Site content seeded");
+  } else if (!existing.profileImage || !existing.resume) {
+    await Content.updateOne(
+      { _id: "site" },
+      {
+        $set: {
+          profileImage: existing.profileImage || INITIAL_CONTENT.profileImage,
+          resume: existing.resume || INITIAL_CONTENT.resume,
+        },
+      },
+    );
+    console.log("Backfilled profileImage/resume on existing content");
   }
 }

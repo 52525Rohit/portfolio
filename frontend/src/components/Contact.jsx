@@ -11,7 +11,7 @@ const PHONE_HREF = "tel:+917992460569";
 const PHONE_TEXT = "+91 79924 60569";
 
 export default function Contact() {
-  const { socials } = useContent();
+  const { socials, resume } = useContent();
   const root = useRef(null);
   const { toast, closeToast, onSubmit } = useContactForm();
   const [resumeOpen, setResumeOpen] = useState(false);
@@ -118,7 +118,7 @@ export default function Contact() {
         </form>
       </div>
       <Toast toast={toast} onClose={closeToast} />
-      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
+      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} resumeUrl={resume} />
     </section>
   );
 }
