@@ -1,9 +1,10 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { SKILLS } from "../data";
 import { revealHeading, revealUp, reduced } from "../lib/anim";
+import { useContent } from "../hooks/useContent";
 
 export default function Skills() {
+  const { skills } = useContent();
   const root = useRef(null);
 
   useLayoutEffect(() => {
@@ -44,7 +45,7 @@ export default function Skills() {
           <h2>Technologies I Work With</h2>
         </div>
         <div className="skills__grid">
-          {SKILLS.map((s) => (
+          {skills.map((s) => (
             <div className="skill" key={s.name}>
               <div className="skill__meta">
                 <span>{s.name}</span>

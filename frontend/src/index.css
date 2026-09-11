@@ -1,71 +1,71 @@
 :root {
   color-scheme: dark;
 
-  /* ---- dark (default) ---- */
-  --bg: #05040d;
-  --bg-1: #0a0817;
-  --bg-2: #100c24;
-  --panel: #1a163666;
-  --panel-solid: #161230;
-  --card: #14112c;
-  --card-2: #191340;
+  /* ---- dark charcoal + orange (default) ---- */
+  --bg: #141414;
+  --bg-1: #191919;
+  --bg-2: #1e1e1e;
+  --panel: #1e1e1e99;
+  --panel-solid: #1a1a1a;
+  --card: #1c1c1c;
+  --card-2: #222222;
   --hero-panel:
-    radial-gradient(120% 140% at 0% 0%, #2a1c66 0%, #140f30 44%, #0a0820 100%),
-    radial-gradient(90% 120% at 100% 100%, #ff3d9a1f, transparent 60%);
+    radial-gradient(120% 140% at 0% 0%, #241a10 0%, #191512 44%, #141414 100%),
+    radial-gradient(90% 120% at 100% 100%, #f4600d1f, transparent 60%);
   --field-bg: #ffffff0a;
-  --chip-bg: #0d0b1fee;
-  --nav-bg: #05040dd9;
+  --chip-bg: #1a1a1aee;
+  --nav-bg: #141414d9;
   --shadow: rgba(0, 0, 0, 0.55);
 
-  --text: #f5f3ff;
-  --muted: #a9a6d0;
-  --faint: #7d79a8;
+  --text: #f5f5f5;
+  --muted: #9a9a9a;
+  --faint: #6b6b6b;
 
-  --violet: #7b4dff;
-  --indigo: #4f7bff;
-  --cyan: #14e0e0;
-  --pink: #ff3d9a;
-  --amber: #ffb43d;
-  --accent: #7b4dff;
-  --accent-2: #c1aaff;
-  --accent-glow: #7b4dff66;
-  --cyan-glow: #14e0e055;
-  --pink-glow: #ff3d9a4d;
+  --violet: #f4600d;
+  --indigo: #ff8a3d;
+  --cyan: #34d399;
+  --pink: #f87171;
+  --amber: #ffb347;
+  --accent: #f4600d;
+  --accent-2: #ff8a3d;
+  --accent-glow: #f4600d55;
+  --cyan-glow: #34d39940;
+  --pink-glow: #f8717140;
 
-  --grad-brand: linear-gradient(110deg, #7b4dff 0%, #4f7bff 40%, #14e0e0 100%);
-  --grad-warm: linear-gradient(110deg, #7b4dff 0%, #ff3d9a 55%, #ffb43d 100%);
+  --grad-brand: linear-gradient(110deg, #f4600d 0%, #ff8a3d 100%);
+  --grad-warm: linear-gradient(110deg, #f4600d 0%, #ffb347 100%);
   --grad-heading: linear-gradient(
     115deg,
-    #ffffff 8%,
-    #c8b6ff 44%,
-    #7ff0ea 78%,
-    #ffffff 100%
+    #f5f5f5 8%,
+    #ffb347 44%,
+    #f4600d 78%,
+    #f5f5f5 100%
   );
-  --grad-surface: linear-gradient(180deg, #1c1746 0%, #0b0920 100%);
+  --grad-surface: linear-gradient(180deg, #1c1c1c 0%, #141414 100%);
   --grad-ring: conic-gradient(
     from 140deg,
-    #7b4dff,
-    #14e0e0,
-    #ff3d9a,
-    #ffb43d,
-    #7b4dff
+    #f4600d,
+    #ffb347,
+    #34d399,
+    #f87171,
+    #f4600d
   );
 
   --mesh:
-    radial-gradient(780px circle at 6% -10%, #7b4dff4d, transparent 58%),
-    radial-gradient(680px circle at 98% 4%, #14e0e033, transparent 55%),
-    radial-gradient(720px circle at 88% 92%, #ff3d9a2e, transparent 55%),
-    radial-gradient(640px circle at 4% 96%, #4f7bff2b, transparent 55%);
-  --dot: #ffffff0f;
+    radial-gradient(780px circle at 6% -10%, #f4600d33, transparent 58%),
+    radial-gradient(680px circle at 98% 4%, #ffb34722, transparent 55%),
+    radial-gradient(720px circle at 88% 92%, #f8717122, transparent 55%),
+    radial-gradient(640px circle at 4% 96%, #34d3991e, transparent 55%);
+  --dot: #ffffff0d;
 
   --border: color-mix(in srgb, var(--text) 13%, transparent);
   --border-strong: color-mix(in srgb, var(--text) 24%, transparent);
   --ghost-bg: color-mix(in srgb, var(--text) 5%, transparent);
   --track: color-mix(in srgb, var(--text) 10%, transparent);
 
-  --code-bg: linear-gradient(180deg, #17132ff7, #0b0920f7);
-  --code-fg: #d6ddff;
-  --code-accent: #7ff0ea;
+  --code-bg: linear-gradient(180deg, #1c1c1cf7, #141414f7);
+  --code-fg: #f0d9c0;
+  --code-accent: #ff8a3d;
 
   --radius: 18px;
   --maxw: 1160px;
@@ -80,53 +80,65 @@
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg: #f7f6fc;
-  --bg-1: #efedf8;
-  --bg-2: #e7e3f4;
+  --bg: #ffffff;
+  --bg-1: #f9f8f6;
+  --bg-2: #f0eeea;
   --panel: #ffffffcc;
   --panel-solid: #ffffff;
   --card: #ffffff;
-  --card-2: #f4f1fd;
+  --card-2: #f7f5f2;
   --hero-panel:
-    radial-gradient(120% 140% at 0% 0%, #efe7ff 0%, #f6f2ff 44%, #ffffff 100%),
-    radial-gradient(90% 120% at 100% 100%, #ff3d9a14, transparent 60%);
+    radial-gradient(120% 140% at 0% 0%, #fdf1e6 0%, #fbf8f4 44%, #ffffff 100%),
+    radial-gradient(90% 120% at 100% 100%, #d1550a12, transparent 60%);
   --field-bg: #ffffff;
   --chip-bg: #ffffffe6;
-  --nav-bg: #f7f6fcdb;
-  --shadow: rgba(41, 27, 82, 0.16);
+  --nav-bg: #ffffffdb;
+  --shadow: rgba(20, 20, 20, 0.12);
 
-  --text: #1b1638;
-  --muted: #5c577e;
-  --faint: #8b86ab;
+  --text: #1a1a1a;
+  --muted: #5c5c5c;
+  --faint: #8a8a8a;
 
-  --violet: #6a37ff;
-  --indigo: #3f63e6;
-  --cyan: #0898b0;
-  --pink: #e21c7e;
-  --amber: #cf7a10;
-  --accent: #6a37ff;
-  --accent-2: #6f52c8;
-  --accent-glow: #6a37ff33;
-  --cyan-glow: #0898b033;
-  --pink-glow: #e21c7e2e;
+  --violet: #d1550a;
+  --indigo: #b8480a;
+  --cyan: #059669;
+  --pink: #dc2626;
+  --amber: #c2650a;
+  --accent: #d1550a;
+  --accent-2: #b8480a;
+  --accent-glow: #d1550a33;
+  --cyan-glow: #05966933;
+  --pink-glow: #dc26262e;
 
-  --grad-brand: linear-gradient(110deg, #6a37ff 0%, #3f63e6 40%, #0898b0 100%);
-  --grad-warm: linear-gradient(110deg, #6a37ff 0%, #e21c7e 55%, #cf7a10 100%);
+  --grad-brand: linear-gradient(110deg, #d1550a 0%, #b8480a 100%);
+  --grad-warm: linear-gradient(110deg, #d1550a 0%, #c2650a 100%);
   --grad-heading: linear-gradient(
     115deg,
-    #1b1638 6%,
-    #6a37ff 46%,
-    #0898b0 82%,
-    #1b1638 100%
+    #1a1a1a 6%,
+    #d1550a 46%,
+    #b8480a 82%,
+    #1a1a1a 100%
   );
-  --grad-surface: linear-gradient(180deg, #ffffff 0%, #f1edfb 100%);
+  --grad-surface: linear-gradient(180deg, #ffffff 0%, #f5f3f0 100%);
+  --grad-ring: conic-gradient(
+    from 140deg,
+    #d1550a,
+    #c2650a,
+    #059669,
+    #dc2626,
+    #d1550a
+  );
 
   --mesh:
-    radial-gradient(760px circle at 6% -12%, #7b4dff26, transparent 58%),
-    radial-gradient(660px circle at 98% 2%, #14e0e01f, transparent 55%),
-    radial-gradient(700px circle at 90% 94%, #ff3d9a1c, transparent 55%),
-    radial-gradient(620px circle at 2% 98%, #4f7bff1c, transparent 55%);
-  --dot: #1b163814;
+    radial-gradient(760px circle at 6% -12%, #d1550a1a, transparent 58%),
+    radial-gradient(660px circle at 98% 2%, #c2650a16, transparent 55%),
+    radial-gradient(700px circle at 90% 94%, #dc262614, transparent 55%),
+    radial-gradient(620px circle at 2% 98%, #05966912, transparent 55%);
+  --dot: #1a1a1a14;
+
+  --code-bg: linear-gradient(180deg, #ffffff 0%, #f5f3f0 100%);
+  --code-fg: #1a1a1a;
+  --code-accent: #d1550a;
 }
 
 * {
@@ -191,7 +203,7 @@ img {
 }
 
 ::selection {
-  background: var(--pink);
+  background: var(--accent);
   color: #fff;
 }
 

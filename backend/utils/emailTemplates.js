@@ -78,6 +78,30 @@ export function confirmationEmail({ name, message }) {
   };
 }
 
+export function resetPasswordEmail({ resetLink }) {
+  const body = `
+    <p style="margin:0 0 6px;font-size:18px;color:#1a1a2e;font-weight:bold;">Reset your password</p>
+    <p style="margin:0 0 22px;font-size:15px;line-height:1.6;color:#5a5a72;">
+      Someone requested a password reset for the portfolio admin panel. This link expires in 30 minutes.
+      If you didn't request this, you can safely ignore this email.
+    </p>
+    <table cellpadding="0" cellspacing="0"><tr>
+      <td style="background:${BRAND_GRADIENT};border-radius:8px;">
+        <a href="${resetLink}" style="display:inline-block;padding:12px 26px;font-size:14px;font-weight:bold;color:#ffffff;text-decoration:none;">Reset Password</a>
+      </td>
+    </tr></table>
+    <p style="margin:22px 0 0;font-size:12px;color:#9a9ab0;word-break:break-all;">
+      Or paste this link into your browser: ${resetLink}
+    </p>`;
+
+  const footer = `<span style="font-size:12px;color:#9a9ab0;">If you didn't request this, no action is needed.</span>`;
+
+  return {
+    subject: "Reset your admin password",
+    html: emailShell({ headerLabel: "Password reset", bodyHtml: body, footerHtml: footer }),
+  };
+}
+
 export function ownerNotificationEmail({ name, email, message }) {
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);

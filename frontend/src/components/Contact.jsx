@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { SOCIALS } from "../data";
 import { magnetic, revealHeading, revealUp } from "../lib/anim";
+import { useContent } from "../hooks/useContent";
 import { useContactForm } from "../hooks/useContactForm";
 import Toast from "./Toast";
 import ResumeModal from "./ResumeModal";
@@ -11,6 +11,7 @@ const PHONE_HREF = "tel:+917992460569";
 const PHONE_TEXT = "+91 79924 60569";
 
 export default function Contact() {
+  const { socials } = useContent();
   const root = useRef(null);
   const { toast, closeToast, onSubmit } = useContactForm();
   const [resumeOpen, setResumeOpen] = useState(false);
@@ -67,7 +68,7 @@ export default function Contact() {
           </ul>
 
           <div className="contact__actions">
-            {SOCIALS.filter((s) => s.href.startsWith("http")).map((s) => (
+            {socials.filter((s) => s.href.startsWith("http")).map((s) => (
               <a
                 key={s.label}
                 href={s.href}

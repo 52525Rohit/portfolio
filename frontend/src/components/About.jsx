@@ -1,9 +1,10 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { STATS } from "../data";
 import { revealHeading, revealUp, reduced } from "../lib/anim";
+import { useContent } from "../hooks/useContent";
 
 export default function About() {
+  const { stats } = useContent();
   const root = useRef(null);
 
   useLayoutEffect(() => {
@@ -68,7 +69,7 @@ export default function About() {
         </div>
 
         <div className="about__stats">
-          {STATS.map((s) => (
+          {stats.map((s) => (
             <div className="stat" key={s.label}>
               <span
                 className="stat__num"

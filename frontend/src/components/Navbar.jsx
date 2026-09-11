@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { NAV } from "../data";
 import { magnetic, reduced } from "../lib/anim";
 import { pathForId } from "../lib/router";
+import { useContent } from "../hooks/useContent";
 import ThemeToggle from "./ThemeToggle";
 
-const IDS = NAV.map((n) => n.toLowerCase());
-
 export default function Navbar() {
+  const { nav } = useContent();
   const ref = useRef(null);
   const barRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
+  const ids = nav.map((n) => n.toLowerCase());
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -35,7 +35,7 @@ export default function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    const sections = IDS.map((id) => document.getElementById(id)).filter(
+    const sections = ids.map((id) => document.getElementById(id)).filter(
       Boolean,
     );
     const io = new IntersectionObserver(
@@ -62,6 +62,8 @@ export default function Navbar() {
       ctx.revert();
       cleanups.forEach((fn) => fn());
     };
+    // Sections/observer set up once at mount from whatever `nav` is at that point
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -71,7 +73,7 @@ export default function Navbar() {
           <span className="nav__brand-mark">&lt;/&gt;</span> Rohit Kumar
         </a>
         <nav className="nav__links">
-          {NAV.map((item) => {
+          {nav.map((item) => {
             const id = item.toLowerCase();
             return (
               <a

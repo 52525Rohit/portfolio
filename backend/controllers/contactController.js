@@ -10,7 +10,6 @@ export async function createContact(req, res) {
   const saved = await Message.create({ name, email, message });
   res.status(201).json({ id: saved._id });
 
-  // Mail is best-effort — the message is already saved, don't fail the request over it.
   if (!transporter) return;
   const from = process.env.EMAIL_USER;
   const owner = process.env.OWNER_EMAIL || from;

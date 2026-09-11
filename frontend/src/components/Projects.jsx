@@ -1,14 +1,18 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { PROJECTS } from "../data";
 import { revealHeading, revealUp, reduced } from "../lib/anim";
+import { useContent } from "../hooks/useContent";
 
 export default function Projects() {
+  const { projects } = useContent();
   const root = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      revealHeading(root.current.querySelector(".projects__head h2"), root.current);
+      revealHeading(
+        root.current.querySelector(".projects__head h2"),
+        root.current,
+      );
       revealUp([".projects__head .tag"], root.current, { start: "top 75%" });
 
       if (!reduced) {
@@ -22,7 +26,6 @@ export default function Projects() {
           scrollTrigger: { trigger: ".projects__grid", start: "top 82%" },
         });
 
-        // parallax the screenshot inside each frame
         gsap.utils.toArray(".project__preview img").forEach((img) => {
           gsap.fromTo(
             img,
@@ -36,7 +39,7 @@ export default function Projects() {
                 end: "bottom top",
                 scrub: true,
               },
-            }
+            },
           );
         });
       }
@@ -59,7 +62,12 @@ export default function Projects() {
     });
   };
   const onLeave = (e) =>
-    gsap.to(e.currentTarget, { rotateY: 0, rotateX: 0, duration: 0.6, ease: "power3.out" });
+    gsap.to(e.currentTarget, {
+      rotateY: 0,
+      rotateX: 0,
+      duration: 0.6,
+      ease: "power3.out",
+    });
 
   return (
     <section id="projects" className="section projects" ref={root}>
@@ -69,7 +77,7 @@ export default function Projects() {
           <h2>Some of My Recent Work</h2>
         </div>
         <div className="projects__grid">
-          {PROJECTS.map((p) => (
+          {projects.map((p) => (
             <article
               className="project"
               key={p.no}
@@ -82,7 +90,11 @@ export default function Projects() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <img src={p.thumb} alt={`${p.title} screenshot`} loading="lazy" />
+                <img
+                  src={p.thumb}
+                  alt={`${p.title} screenshot`}
+                  loading="lazy"
+                />
                 <span className="project__no">{p.no}</span>
                 <span className="project__open">Open ↗</span>
               </a>

@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { TECH } from "../data";
 import { magnetic, reduced, splitWords } from "../lib/anim";
+import { useContent } from "../hooks/useContent";
 import profile from "../assets/profile.png";
 import ResumeModal from "./ResumeModal";
 
@@ -14,6 +14,7 @@ const CODE = `const developer = {
 };`;
 
 export default function Hero({ start }) {
+  const { tech } = useContent();
   const root = useRef(null);
   const wordsRef = useRef([]);
   const [resumeOpen, setResumeOpen] = useState(false);
@@ -148,7 +149,7 @@ export default function Hero({ start }) {
           <div className="hero__tech">
             <span>STACK I WORK WITH</span>
             <ul>
-              {TECH.map((t) => (
+              {tech.map((t) => (
                 <li key={t}>{t}</li>
               ))}
             </ul>

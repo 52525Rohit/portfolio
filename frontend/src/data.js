@@ -1,14 +1,10 @@
-import thumb01 from "./assets/proj-01.png";
-import thumb02 from "./assets/proj-02.png";
-import thumb03 from "./assets/proj-03.png";
-
 export const NAV = ["Home", "About", "Skills", "Projects", "Contact"];
 
 export const TECH = ["HTML", "CSS", "JS", "React", "Next", "Node", "Mongo"];
 
 export const STATS = [
   { value: 1.6, suffix: "+", label: "Years of Experience" },
-  { value: 3, suffix: "+", label: "Projects Shipped" },
+  { value: 20, suffix: "+", label: "Projects Shipped" },
   { value: 9, suffix: "+", label: "Technologies" },
   { value: 100, suffix: "%", label: "Commitment to Learning" },
 ];
@@ -32,7 +28,7 @@ export const PROJECTS = [
     desc: "A full-stack e-commerce-style book store where users browse books and check out through a modern interface. Includes payment gateway and webhook integration.",
     tags: ["Next.js", "Node.js", "Express", "MongoDB"],
     link: "https://book-store-jet-six.vercel.app/",
-    thumb: thumb01,
+    thumb: "/projects/proj-01.png",
   },
   {
     no: "02",
@@ -40,7 +36,7 @@ export const PROJECTS = [
     desc: "An interactive quiz app with a simple, engaging flow — question rendering, answer selection, and result handling on a fully responsive interface.",
     tags: ["React.js", "Next.js", "Tailwind CSS", "JavaScript"],
     link: "https://quiz-application-9vbg.vercel.app/",
-    thumb: thumb02,
+    thumb: "/projects/proj-02.png",
   },
   {
     no: "03",
@@ -48,7 +44,7 @@ export const PROJECTS = [
     desc: "A web app for tracking and managing data through a clean dashboard — API integration, modern UI, and a responsive layout.",
     tags: ["React.js", "Next.js", "Node.js", "JavaScript"],
     link: "https://render-tracker-blush.vercel.app/",
-    thumb: thumb03,
+    thumb: "/projects/proj-03.png",
   },
 ];
 
