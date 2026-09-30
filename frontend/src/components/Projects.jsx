@@ -1,3 +1,4 @@
+import { fileUrl } from "../api/api";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { revealHeading, revealUp, reduced } from "../lib/anim";
@@ -91,7 +92,7 @@ export default function Projects() {
                 rel="noreferrer"
               >
                 {p.thumb && <img
-                  src={p.thumb}
+                  src={fileUrl(p.thumb)}
                   alt={`${p.title} screenshot`}
                   loading="lazy"
                 />}

@@ -1,3 +1,4 @@
+import { fileUrl } from "../api/api";
 import { useState } from "react";
 import { uploadFile } from "../services/contentService";
 
@@ -67,7 +68,7 @@ export default function ProjectsEditor({ items, onChange, onSaveAll, onError }) 
         {items.map((p, i) => (
           <div className="admin-project" key={p._id || `new-${i}`}>
             <div className="admin-project__thumb">
-              {p.thumb && <img src={p.thumb} alt="" />}
+              {p.thumb && <img src={fileUrl(p.thumb)} alt="" />}
               <input
                 type="file"
                 accept="image/*"

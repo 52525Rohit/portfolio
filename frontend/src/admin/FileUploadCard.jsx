@@ -1,3 +1,4 @@
+import { fileUrl } from "../api/api";
 import { useState } from "react";
 import { uploadFile, updateContent } from "../services/contentService";
 
@@ -29,9 +30,9 @@ export default function FileUploadCard({ title, field, accept, isImage, value, o
       </div>
       <div className="admin-upload">
         {isImage ? (
-          <img src={value} alt="" className="admin-upload__preview" />
+          <img src={fileUrl(value)} alt="" className="admin-upload__preview" />
         ) : (
-          <a href={value} target="_blank" rel="noreferrer" className="admin-upload__file">
+          <a href={fileUrl(value)} target="_blank" rel="noreferrer" className="admin-upload__file">
             PDF
           </a>
         )}

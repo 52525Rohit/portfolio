@@ -14,7 +14,7 @@ export async function uploadFile(req, res) {
     contentType: req.file.mimetype,
     data: req.file.buffer,
   });
-  const url = `${req.protocol}://${req.get("host")}/api/uploads/${filename}`;
+  const url = `/api/uploads/${filename}`;
   res.json({ url });
 }
 

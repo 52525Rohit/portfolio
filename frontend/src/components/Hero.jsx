@@ -1,3 +1,4 @@
+import { fileUrl } from "../api/api";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { magnetic, reduced, splitWords } from "../lib/anim";
@@ -159,7 +160,7 @@ export default function Hero({ start }) {
           <div className="hero__orb" aria-hidden />
           <div className="hero__orb hero__orb--2" aria-hidden />
           <div className="hero__portrait">
-            <img src={profileImage} alt="Rohit Kumar" />
+            <img src={fileUrl(profileImage)} alt="Rohit Kumar" />
             <span className="hero__badge">
               <i /> Open to opportunities
             </span>

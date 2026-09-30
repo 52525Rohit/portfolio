@@ -1,3 +1,4 @@
+import { fileUrl } from "../api/api";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
@@ -20,7 +21,7 @@ export default function ResumeModal({ open, onClose, resumeUrl = "/resume.pdf" }
         <div className="resume-modal__bar">
           <span>Resume</span>
           <div className="resume-modal__actions">
-            <a href={resumeUrl} download="Rohit-Kumar-Resume.pdf" className="btn btn--primary">
+            <a href={fileUrl(resumeUrl)} download="Rohit-Kumar-Resume.pdf" className="btn btn--primary">
               Download <span aria-hidden>↓</span>
             </a>
             <button
@@ -33,7 +34,7 @@ export default function ResumeModal({ open, onClose, resumeUrl = "/resume.pdf" }
             </button>
           </div>
         </div>
-        <iframe src={resumeUrl} title="Resume preview" className="resume-modal__frame" />
+        <iframe src={fileUrl(resumeUrl)} title="Resume preview" className="resume-modal__frame" />
       </div>
     </div>,
     document.body
