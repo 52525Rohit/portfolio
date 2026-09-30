@@ -6,6 +6,7 @@ import seed from "./config/seed.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
+import { serveUpload } from "./controllers/uploadController.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 const { PORT = 5000, MONGODB_URI, CLIENT_ORIGIN } = process.env;
@@ -14,12 +15,10 @@ await connectDB(MONGODB_URI);
 await seed();
 
 const app = express();
-// Render terminates TLS at its proxy; trust it so req.protocol reports https.
 app.set("trust proxy", 1);
 app.use(cors({ origin: CLIENT_ORIGIN || "*" }));
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
-
+app.get("/api/uploads/:name", serveUpload);
 app.use("/api/contact", contactRoutes);
 app.use("/api/admin", authRoutes);
 app.use("/api/content", contentRoutes);
