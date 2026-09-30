@@ -97,4 +97,15 @@ export default async function seed() {
     );
     console.log("Backfilled profileImage/resume on existing content");
   }
+
+  // Uploads saved before "trust proxy" was set have http:// URLs; browsers block them on https pages.
+  if (existing) {
+    const json = JSON.stringify(existing);
+    const fixed = json.replace(/http:\/\/(?!localhost)([^"/]+\/uploads\/)/g, "https://$1");
+    if (fixed !== json) {
+      const { _id, ...rest } = JSON.parse(fixed);
+      await Content.updateOne({ _id }, { $set: rest });
+      console.log("Upgraded upload URLs to https");
+    }
+  }
 }

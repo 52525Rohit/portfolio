@@ -14,6 +14,8 @@ await connectDB(MONGODB_URI);
 await seed();
 
 const app = express();
+// Render terminates TLS at its proxy; trust it so req.protocol reports https.
+app.set("trust proxy", 1);
 app.use(cors({ origin: CLIENT_ORIGIN || "*" }));
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
