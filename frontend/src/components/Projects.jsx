@@ -90,11 +90,11 @@ export default function Projects() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <img
+                {p.thumb && <img
                   src={p.thumb}
                   alt={`${p.title} screenshot`}
                   loading="lazy"
-                />
+                />}
                 <span className="project__no">{p.no}</span>
                 <span className="project__open">Open ↗</span>
               </a>

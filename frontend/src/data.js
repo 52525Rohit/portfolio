@@ -27,7 +27,7 @@ export const PROJECTS = [
     title: "Book Store Application",
     desc: "A full-stack e-commerce-style book store where users browse books and check out through a modern interface. Includes payment gateway and webhook integration.",
     tags: ["Next.js", "Node.js", "Express", "MongoDB"],
-    link: "https://book-store-jet-six.vercel.app/",
+    link: "https://bookstore.rohitkumarrawani6.workers.dev/",
     thumb: "/projects/proj-01.png",
   },
   {
@@ -35,7 +35,7 @@ export const PROJECTS = [
     title: "Quiz Application",
     desc: "An interactive quiz app with a simple, engaging flow — question rendering, answer selection, and result handling on a fully responsive interface.",
     tags: ["React.js", "Next.js", "Tailwind CSS", "JavaScript"],
-    link: "https://quiz-application-9vbg.vercel.app/",
+    link: "https://quiz-application.rohitkumarrawani6.workers.dev/",
     thumb: "/projects/proj-02.png",
   },
   {
@@ -43,8 +43,16 @@ export const PROJECTS = [
     title: "Render Tracker",
     desc: "A web app for tracking and managing data through a clean dashboard — API integration, modern UI, and a responsive layout.",
     tags: ["React.js", "Next.js", "Node.js", "JavaScript"],
-    link: "https://render-tracker-blush.vercel.app/",
+    link: "https://render-tracker.rohitkumarrawani6.workers.dev/",
     thumb: "/projects/proj-03.png",
+  },
+  {
+    no: "04",
+    title: "Chat Application",
+    desc: "A real-time chat app for instant messaging with a clean, responsive interface.",
+    tags: ["React.js", "Node.js", "JavaScript"],
+    link: "https://chat-application.rohitkumarrawani6.workers.dev",
+    thumb: "",
   },
 ];
 
