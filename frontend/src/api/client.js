@@ -1,4 +1,4 @@
-import { API_URL } from "../config";
+import { API_URL } from "./api";
 
 const TOKEN_KEY = "admin_token";
 

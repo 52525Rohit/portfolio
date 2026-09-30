@@ -86,7 +86,7 @@ export default function Projects() {
             >
               <a
                 className="project__preview"
-                href={p.link}
+                href={/^https?:\/\//i.test(p.link) ? p.link : `https://${p.link}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -107,7 +107,7 @@ export default function Projects() {
                   ))}
                 </ul>
                 <a
-                  href={p.link}
+                  href={/^https?:\/\//i.test(p.link) ? p.link : `https://${p.link}`}
                   target="_blank"
                   rel="noreferrer"
                   className="project__link"
